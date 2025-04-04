@@ -3,14 +3,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7
+      - image: circleci/python:3.8  # Upgrade to 3.8 or newer (e.g., 3.9, 3.10)
 
     working_directory: ~/repo
 
     steps:
-      # Step 1: obtain repo from GitHub
       - checkout
-      # Step 2: create virtual env and install dependencies
       - run:
           name: install dependencies
           command: |
@@ -19,7 +17,6 @@ jobs:
             pip install --upgrade pip
             pip install coverage
             pip install -r requirements.txt
-      # Step 3: run linter and tests
       - run:
           name: run tests
           command: |
